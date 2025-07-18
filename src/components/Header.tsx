@@ -1,4 +1,7 @@
 import React from 'react'
+import { Button } from './ui/button'
+import { MoonIcon } from 'lucide-react'
+import { SearchForm } from './SearchForm'
 
 export const Header: React.FC = () => {
   return (
@@ -12,6 +15,20 @@ export const Header: React.FC = () => {
             <h1 className="text-xl lg:text-2xl font-bold text-gray-900">
               NYT Article Explorer
             </h1>
+          </div>
+
+          <div className="flex items-center gap-3 flex-1 lg:flex-initial lg:min-w-0">
+            <div className="flex-1 lg:w-96">
+              <SearchForm onSearch={() => {}} />
+            </div>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => {}}
+              className="flex-shrink-0 w-10 h-10 p-0 rounded-full hover:bg-gray-100"
+            >
+              <MoonIcon className="h-4 w-4" />
+            </Button>
           </div>
         </div>
       </div>
