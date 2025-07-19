@@ -3,8 +3,13 @@ import { Button } from "./ui/button"
 import { MoonIcon, SunIcon } from "lucide-react"
 import { SearchForm } from "./SearchForm"
 import { useTheme } from "@/hooks/useTheme"
+import type { SearchFilters } from "@/types"
 
-export const Header: React.FC = () => {
+interface HeaderProps {
+  onSearch: (filters: SearchFilters) => void
+}
+
+export const Header: React.FC<HeaderProps> = ({ onSearch }) => {
   const { theme, toggleTheme } = useTheme()
 
   return (
@@ -22,7 +27,7 @@ export const Header: React.FC = () => {
 
           <div className="flex items-center gap-3 flex-1 lg:flex-initial lg:min-w-0">
             <div className="flex-1 lg:w-80">
-              <SearchForm onSearch={() => {}} />
+              <SearchForm onSearch={onSearch} />
             </div>
             <Button
               variant="ghost"

@@ -4,18 +4,30 @@ import { Card } from './ui/card'
 import { Button } from './ui/button'
 import type { Article } from '@/types'
 import { format } from 'date-fns'
+import { useNavigate } from 'react-router-dom'
 interface ArticleCardProps {
   article: Article
 }
 
 export const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
+  const navigate = useNavigate()
   const formattedDate = format(article.published_date, 'MMM dd, yyyy')
   
-  const handleViewDetails = () => {}
+  const handleViewDetails = () => {
+    navigate(`/article/${article.id}`, { 
+      state: { 
+        article: {
+          ...article,
+          type: 'popular'
+        }
+      } 
+    });
+  };
 
   const handleReadOriginal = (e: React.MouseEvent) => {
-    e.stopPropagation()
-  }
+    e.stopPropagation();
+    window.open(article.url, '_blank', 'noopener,noreferrer');
+  };
 
   return (
     <Card className="overflow-hidden flex flex-col justify-between hover:shadow-lg transition-shadow duration-200 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 cursor-pointer">

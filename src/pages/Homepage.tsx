@@ -1,10 +1,17 @@
 import { PopularArticleGrid } from "@/components/ArticleGrid"
 import { UseGetPopularArticle } from "@/hooks/UseGetPopularArticle"
+import type { SearchFilters } from "@/types"
 
-const Homepage: React.FC = () => {
+interface HomePageProps {
+  onSearch: (filters: SearchFilters) => void
+  searchFilters: SearchFilters
+  hasSearched: boolean
+}
+
+
+export const HomePage: React.FC<HomePageProps> = () => {
   const { data: popularData } = UseGetPopularArticle()
-
-  console.log('popularData', popularData)
+  
   return (
     <div>
       <div className="mb-6">
@@ -22,4 +29,4 @@ const Homepage: React.FC = () => {
   )
 }
 
-export default Homepage
+export default HomePage

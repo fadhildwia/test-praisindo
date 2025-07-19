@@ -1,7 +1,10 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Homepage from './pages/Homepage'
-import MainLayout from './components/layouts/MainLayout'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import Homepage from "./pages/Homepage"
+import MainLayout from "./components/layouts/MainLayout"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { useState } from "react"
+import type { SearchFilters } from "./types"
+import { ArticleDetailPage } from "./pages/ArticleDetailPage"
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -13,15 +16,32 @@ const queryClient = new QueryClient({
 })
 
 function App() {
+  const [searchFilters, setSearchFilters] = useState<SearchFilters>({
+    query: "",
+  })
+  const [hasSearched, setHasSearched] = useState(false)
+
+  const handleSearch = (filters: SearchFilters) => {
+    setSearchFilters(filters)
+    setHasSearched(true)
+  }
+
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <MainLayout>
+        <MainLayout onSearch={handleSearch}>
           <Routes>
             <Route
-              path='/'
-              element={<Homepage />}
+              path="/"
+              element={
+                <Homepage
+                  onSearch={handleSearch}
+                  searchFilters={searchFilters}
+                  hasSearched={hasSearched}
+                />
+              }
             />
+            <Route path="/article/:id" element={<ArticleDetailPage />} />
           </Routes>
         </MainLayout>
       </BrowserRouter>

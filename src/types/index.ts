@@ -1,5 +1,5 @@
 export interface SearchFilters {
-  query: string;
+  query: string
 }
 
 export interface Article {
@@ -10,26 +10,40 @@ export interface Article {
   section: string 
   title: string
   nytdsection: string
-  uri: string;
-  url: string;
+  uri: string
+  url: string
+  byline: string
 }
 
 export interface SearchResponse {
-  status: string;
-  copyright: string;
+  status: string
+  copyright: string
   response: {
-    docs: Article[];
+    docs: Article[]
     meta: {
-      hits: number;
-      offset: number;
-      time: number;
-    };
-  };
+      hits: number
+      offset: number
+      time: number
+    }
+  }
 }
 
 export interface ArticlesResponse {
-  status: string;
-  copyright: string;
-  num_results: number;
-  results: Article[];
+  status: string
+  copyright: string
+  num_results: number
+  results: Article[]
+}
+
+export interface SearchResponse {
+  status: string
+  copyright: string
+  response: {
+    docs: Article[]
+    meta: {
+      hits: number
+      offset: number
+      time: number
+    }
+  }
 }
