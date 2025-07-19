@@ -24,6 +24,9 @@ function App() {
   const handleSearch = (filters: SearchFilters) => {
     setSearchFilters(filters)
     setHasSearched(true)
+    const params = new URLSearchParams(window.location.search)
+    params.set("q", filters.query)
+    window.history.replaceState({}, "", `${window.location.pathname}?${params.toString()}`)
   }
 
   return (

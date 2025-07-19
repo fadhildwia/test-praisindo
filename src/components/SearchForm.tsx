@@ -12,11 +12,8 @@ export const SearchForm: React.FC<SearchFormProps> = ({ onSearch, isLoading }) =
   const [query, setQuery] = useState('')
 
   const handleSubmit = (e: React.FormEvent) => {
-    console.log('test');
     e.preventDefault()
-    if (query.trim()) {
-      onSearch({ query: query.trim() })
-    }
+    onSearch({ query: query.trim() })
   }
 
   return (

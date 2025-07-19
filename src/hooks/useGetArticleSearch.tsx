@@ -17,7 +17,7 @@ const searchArticles = async (filters: SearchFilters): Promise<SearchResponse> =
   }
 }
 
-export const useArticleSearch = (filters: SearchFilters, enabled: boolean = false) => {
+export const useGetArticleSearch = (filters: SearchFilters, enabled: boolean = false) => {
   return useQuery({
     queryKey: ['articles', filters],
     queryFn: () => searchArticles(filters),
